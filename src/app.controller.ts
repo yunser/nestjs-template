@@ -1,5 +1,14 @@
-import { Body, Controller, Get, Param, Post, Query, Headers } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Body, Controller, Get, Param, Post, Query, Headers, HttpStatus, HttpException } from '@nestjs/common'
+import { AppService } from './app.service'
+import { ApiProperty } from '@nestjs/swagger'
+
+export class User {
+    @ApiProperty()
+    name: string
+
+    @ApiProperty()
+    age: number
+}
 
 interface CreateDto {
     name: string
@@ -68,6 +77,13 @@ export class AppController {
     @Get('exception')
     async exception() {
         throw new Error('custom exception')
+        return 'success'
+    }
+
+    @Get('/error403')
+    async error403() {
+        throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+        // throw new Error('custom exception')
         return 'success'
     }
 }
