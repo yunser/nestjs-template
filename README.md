@@ -24,7 +24,21 @@
 
 ## Description
 
+Nest 模板。
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+
+## 技术栈
+
+* Nest 8
+* TypeScript
+
+
+## TODO
+
+* 部署到 Vercel。
+
 
 ## Installation
 
