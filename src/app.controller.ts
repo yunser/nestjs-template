@@ -1,7 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 interface CreateDto {
+    name: string
+    age: number
+}
+
+interface QueryType {
     name: string
     age: number
 }
@@ -33,8 +38,14 @@ export class AppController {
         return 'user:' + params.id
     }
 
+    @Get('/get')
+    get(@Query() query: QueryType) {
+        console.log('query', query)
+        return 'success'
+    }
+
     @Post('/create')
-    getAuth(@Body() createCatDto: CreateDto) {
+    create(@Body() createCatDto: CreateDto) {
         console.log('data', createCatDto)
         return 'success'
     }
