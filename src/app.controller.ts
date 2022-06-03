@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Headers } from '@nestjs/common';
 import { AppService } from './app.service';
 
 interface CreateDto {
@@ -39,8 +39,9 @@ export class AppController {
     }
 
     @Get('/get')
-    get(@Query() query: QueryType) {
+    get(@Query() query: QueryType, @Headers() headers: object) {
         console.log('query', query)
+        console.log('headers', headers)
         return 'success'
     }
 
