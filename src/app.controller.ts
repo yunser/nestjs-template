@@ -64,4 +64,10 @@ export class AppController {
         console.log('data', createCatDto)
         return 'success'
     }
+
+    @Get('exception')
+    async exception() {
+        throw new Error('custom exception')
+        return 'success'
+    }
 }
