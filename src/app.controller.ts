@@ -1,5 +1,10 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+
+interface CreateDto {
+    name: string
+    age: number
+}
 
 @Controller()
 export class AppController {
@@ -26,5 +31,11 @@ export class AppController {
     @Get('/users/:id')
     userDetail(@Param() params): string {
         return 'user:' + params.id
+    }
+
+    @Post('/create')
+    getAuth(@Body() createCatDto: CreateDto) {
+        console.log('data', createCatDto)
+        return 'success'
     }
 }

@@ -35,6 +35,11 @@ Nest 模板。
 * TypeScript
 
 
+## 功能
+
+* hello world
+
+
 ## TODO
 
 * 部署到 Vercel。
