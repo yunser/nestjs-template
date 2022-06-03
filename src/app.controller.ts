@@ -2,6 +2,12 @@ import { Body, Controller, Get, Param, Post, Query, Headers, HttpStatus, HttpExc
 import { AppService } from './app.service'
 import { ApiProperty } from '@nestjs/swagger'
 
+export class ForbiddenException extends HttpException {
+    constructor() {
+        super('Forbidden', HttpStatus.FORBIDDEN);
+    }
+}
+
 export class User {
     @ApiProperty()
     name: string
@@ -84,6 +90,12 @@ export class AppController {
     async error403() {
         throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
         // throw new Error('custom exception')
+        return 'success'
+    }
+
+    @Get('/forbidden')
+    async forbidden() {
+        throw new ForbiddenException()
         return 'success'
     }
 }
