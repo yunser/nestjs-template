@@ -1,6 +1,9 @@
 import { Body, Controller, Get, Param, Post, Query, Headers, HttpStatus, HttpException } from '@nestjs/common'
 import { AppService } from './app.service'
 import { ApiProperty } from '@nestjs/swagger'
+import { UserEntity } from './entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 export class ForbiddenException extends HttpException {
     constructor() {
@@ -36,7 +39,9 @@ function sleep(ms: number) {
 
 @Controller()
 export class AppController {
-    constructor(private readonly appService: AppService) { }
+    constructor(private readonly appService: AppService,
+        
+        ) { }
 
     @Get('/')
     getHello() {
@@ -97,5 +102,12 @@ export class AppController {
     async forbidden() {
         throw new ForbiddenException()
         return 'success'
+    }
+
+    @Get('/dbTest')
+    async dbTest() {
+        const user = await this.appService.getUser()
+        console.log('user', user)
+        return user
     }
 }
