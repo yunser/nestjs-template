@@ -11,6 +11,14 @@ interface QueryType {
     age: number
 }
 
+function sleep(ms: number) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(null)
+        }, ms)
+    })
+}
+
 @Controller()
 export class AppController {
     constructor(private readonly appService: AppService) { }
@@ -42,6 +50,12 @@ export class AppController {
     get(@Query() query: QueryType, @Headers() headers: object) {
         console.log('query', query)
         console.log('headers', headers)
+        return 'success'
+    }
+
+    @Get('/sleep')
+    async sleep() {
+        await sleep(2 * 1000)
         return 'success'
     }
 
