@@ -26,6 +26,8 @@
 
 Nest 模板。
 
+端口 3000。
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 
